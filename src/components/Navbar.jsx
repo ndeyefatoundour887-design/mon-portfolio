@@ -1,17 +1,61 @@
-import { NavLink } from "react-router-dom"
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-function Navbar() {
+import { IoMenu } from "react-icons/io5";
+
+
+const Navbar = () => {
+
+  const [ openMenu , setOpenMenu ] = useState(false)
+  console.log(openMenu)
+   
+
   return (
-    <nav className="navbar">
+    <nav> 
+        {/* gauche */}
+        <h1 className='logo' >Portfolio</h1>
 
-      <div className="logo">Portfolio</div>
+        {/* au milieu */}
 
-      <div className="menu">
-        <NavLink to="/">Accueil</NavLink>
-        <NavLink to="/project">Project</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-      </div>
+        <div className="lien">
+              <NavLink to="/">
+                <p>Accueil</p>
+              </NavLink>
+              <NavLink to="/projets">
+               <p>Projets</p>
+              </NavLink>
+              <NavLink to="/contact" >
+               <p>Contact</p>
+              </NavLink>
+        </div>
+
+        {/* droite */}
+         <div className="menu">
+            <div className=""></div>
+            <IoMenu 
+             onClick={() => setOpenMenu(!openMenu)}
+            className='burguer'  size={30} />
+         </div>
+
+         {/* volet  */}
+
+          {
+            openMenu && (
+            <div className="lien_mobile">
+              <NavLink to="/">
+                <p>Accueil</p>
+              </NavLink>
+              <NavLink to="/projets">
+               <p>Projets</p>
+              </NavLink>
+              <NavLink to="/contact" >
+               <p>Contact</p>
+              </NavLink>
+           </div>
+            )
+          }
+
+
 
     </nav>
   )
